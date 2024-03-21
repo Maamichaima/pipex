@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/18 00:13:02 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/21 02:05:56 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	char	*out;
 	char	**env;
 	int		num_cmd;
+	int		*pids;
 }			t_data;
 
 char		**ft_split(char *str, char *charset);
@@ -60,11 +61,11 @@ char		*ft_strchr(char *s, int c);
 char		*get_next_line(int fd);
 size_t		ft_strlen(const char *s);
 int			ft_strcmp(const char *s1, const char *s2);
-void		uni_multi_pipe(t_data data, t_cmd *cmd);
+void		uni_multi_pipe(t_data *data, t_cmd *cmd);
 void		creer_cmd(t_data data, t_cmd *n, int index);
 void		executer(t_cmd cmd, t_data data);
 void		here_doc(t_data data, t_cmd cmd, char *limiter);
-void		close_wait(t_data data);
+int			close_wait(t_data data);
 void		outfile(t_data data, t_cmd *n, int index);
 void		infile(t_data data, t_cmd *n);
 void		creer_cmd_here(t_data data, t_cmd *n, int index);

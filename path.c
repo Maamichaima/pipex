@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:04:56 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/19 03:50:26 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/20 04:05:26 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ char	*correct_path(char **path, char *str)
 
 	tmp = str;
 	i = 0;
-	// printf("%p\n", str);
-	if(!str)
+	if (!str)
 		return (str);
 	str = ft_strjoin("/", str);
-	//printf("%s", str);
 	while (path && path[i])
 	{
 		path[i] = ft_strjoin(path[i], str);

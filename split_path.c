@@ -6,103 +6,116 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:20:33 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/18 18:20:14 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/21 18:30:39 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	is_separator(char c, char *charset)
+int	check_sep(char c, char *charset)
 {
 	int	i;
 
 	i = 0;
-	while (charset[i])
+	while (charset[i] != '\0')
 	{
 		if (c == charset[i])
 			return (1);
-		++i;
+		i++;
 	}
 	return (0);
 }
 
-int	is_word(char c, char cbefore, char *charset)
+static int	count_word(char *s, char *charset)
 {
-	return (!is_separator(c, charset) && is_separator(cbefore, charset));
+	int	i;
+	int	w;
+
+	w = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] != '\0' && check_sep(s[i], charset))
+			i++;
+		if (s[i] != '\0')
+			w++;
+		while (s[i] != '\0' && !check_sep(s[i], charset))
+			i++;
+	}
+	return (w);
 }
 
-int	get_words_count(char *str, char *charset)
+int	c_char(char *str, char *charset)
 {
-	int	words_count;
 	int	i;
+	int	c;
 
+	c = 0;
 	i = 0;
-	words_count = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && !check_sep(str[i], charset))
 	{
-		if (is_word(str[i], str[i - 1], charset) || (!is_separator(str[i],
-					charset) && i == 0))
-			words_count++;
+		c++;
 		i++;
 	}
-	return (words_count);
+	return (c);
 }
 
-int	*get_words_size(char *str, char *charset)
+static char	*alloc_word(char *s, char *c)
 {
-	int	index;
-	int	i;
-	int	words_count;
-	int	*words_size;
+	int		i;
+	char	*p;
 
 	i = 0;
-	words_count = get_words_count(str, charset);
-	words_size = malloc(words_count * sizeof(int));
-	while (i <= words_count)
+	p = malloc(sizeof(char) * (c_char(s, c) + 1));
+	if (!p)
+		return (NULL);
+	while (s[i] && !check_sep(s[i], c))
 	{
-		words_size[i] = 0;
+		p[i] = s[i];
 		i++;
 	}
-	i = 0;
-	index = 0;
-	while (str[i] != '\0')
+	p[i] = '\0';
+	return (p);
+}
+
+static void	*ft_fr(int i, char **t)
+{
+	while (i > 0)
 	{
-		if (!is_separator(str[i], charset))
-			words_size[index]++;
-		else if (i > 0 && !is_separator(str[i - 1], charset))
-			index++;
-		i++;
+		free(t[i - 1]);
+		i--;
 	}
-	return (words_size);
+	free(t);
+	return (NULL);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	char	**words;
+	char	**split;
 	int		i;
-	int		j;
-	int		index;
-	int		*words_size;
+	int		w;
 
-	// if (!str || !charset)
-	// 	return (NULL);
-	words = malloc((get_words_count(str, charset) + 1) * sizeof(char *));
-	words_size = get_words_size(str, charset);
-	index = 0;
-	j = 0;
-	i = -1;
-	while (str[++i] != '\0')
+	w = 0;
+	i = 0;
+	if (!str)
+		return (NULL);
+	split = (char **)malloc(sizeof(char **) * (count_word(str, charset) + 1));
+	if (!split)
+		return (NULL);
+	while (str[i] != '\0')
 	{
-		if (!is_separator(str[i], charset))
+		while (str[i] != '\0' && check_sep(str[i], charset))
+			i++;
+		if (str[i] != '\0')
 		{
-			if (i == 0 || is_word(str[i], str[i - 1], charset))
-				words[index] = malloc(words_size[index] * sizeof(char));
-			words[index][j] = str[i];
-			words[index][++j] = '\0';
+			split[w] = alloc_word(str + i, charset);
+			if (split[i] == NULL)
+				return (ft_fr(i, split));
+			w++;
 		}
-		else if (i > 0 && !is_separator(str[i - 1], charset) && ++index)
-			j = 0;
+		while (str[i] != '\0' && !check_sep(str[i], charset))
+			i++;
 	}
-	words[get_words_count(str, charset)] = 0;
-	return (words);
+	split[w] = 0;
+	return (split);
 }

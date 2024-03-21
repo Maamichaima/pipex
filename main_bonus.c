@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/18 01:29:12 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/21 18:10:47 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@
 // 	}
 // }
 
-void	close_wait(t_data data)
+int	close_wait(t_data data)
 {
 	int	i;
+	int	status;
 
 	i = 0;
 	while (i < data.num_cmd - 1)
@@ -81,11 +82,14 @@ void	close_wait(t_data data)
 		close(data.pipe[i][1]);
 		i++;
 	}
-	while (i >= 0)
+	i = 0;
+	while (i < data.num_cmd)
 	{
-		wait(NULL);
-		i--;
+		waitpid(data.pids[i], &status, WCONTINUED);
+		i++;
 	}
+	// printf("status %d \n", status);
+	return (WEXITSTATUS(status));
 }
 
 int	main(int c, char **v, char **env)
@@ -101,11 +105,12 @@ int	main(int c, char **v, char **env)
 		inisialiser(&data, v, env, c - 1);
 		creer_cmd_here(data, &cmd, i);
 		here_doc(data, cmd, v[1]);
+		return (close_wait(data));
 	}
 	else if (c >= 5)
 	{
 		inisialiser(&data, v, env, c);
-		uni_multi_pipe(data, &cmd);
-		close_wait(data);
+		uni_multi_pipe(&data, &cmd);
+		return (close_wait(data));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/19 03:53:17 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/21 18:26:31 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	executer(t_cmd cmd, t_data data)
 
 	dup2(cmd.in, 0);
 	dup2(cmd.out, 1);
+	close(cmd.in);
+	close(cmd.out);
 	i = 0;
 	while (i < data.num_cmd - 1)
 	{
@@ -26,8 +28,8 @@ void	executer(t_cmd cmd, t_data data)
 		i++;
 	}
 	execve(cmd.path, cmd.cmd, cmd.env);
-	write(2, "eroooor cmd \n", 15);
-	exit(0);
+	write(2, "eroooor cmd", 15);
+	exit(127);
 }
 
 void	infile(t_data data, t_cmd *n)
@@ -44,9 +46,9 @@ void	infile(t_data data, t_cmd *n)
 void	outfile(t_data data, t_cmd *n, int index)
 {
 	n->out = open(data.out, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (n->in == -1)
+	if (n->out == -1)
 	{
-		perror(data.in);
+		perror(data.out);
 		exit(1);
 	}
 	n->in = data.pipe[index - 1][0];
@@ -54,9 +56,9 @@ void	outfile(t_data data, t_cmd *n, int index)
 
 void	creer_cmd(t_data data, t_cmd *n, int index)
 {
-	n->cmd = ft_split(data.v[index + 2], "\n \t");
+	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t");
 	n->path = correct_path(ft_split(path_in_env(data.env), ":"), n->cmd[0]);
-	//printf("h%sh\n", n->path);
+	// printf("h%sh\n", n->path);
 	// if (n->path == NULL)
 	// 	exit(1);
 	n->env = data.env;
@@ -71,19 +73,18 @@ void	creer_cmd(t_data data, t_cmd *n, int index)
 	}
 }
 
-void	uni_multi_pipe(t_data data, t_cmd *cmd)
+void	uni_multi_pipe(t_data *data, t_cmd *cmd)
 {
 	int	i;
-	int	pid;
 
 	i = 0;
-	while (i < data.num_cmd)
+	while (i < data->num_cmd)
 	{
-		pid = fork();
-		if (pid == 0)
+		data->pids[i] = fork();
+		if (data->pids[i] == 0)
 		{
-			creer_cmd(data, cmd, i);
-			executer(*cmd, data);
+			creer_cmd(*data, cmd, i);
+			executer(*cmd, *data);
 		}
 		i++;
 	}
