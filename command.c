@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/21 18:26:31 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/22 20:24:36 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	executer(t_cmd cmd, t_data data)
 		i++;
 	}
 	execve(cmd.path, cmd.cmd, cmd.env);
+	//ft_free(i,data.pipe);
+	//free(cmd.path);
+	//ft_fr(i, cmd.cmd);
 	write(2, "eroooor cmd", 15);
 	exit(127);
 }
@@ -37,6 +40,7 @@ void	infile(t_data data, t_cmd *n)
 	n->in = open(data.in, O_RDONLY);
 	if (n->in == -1)
 	{
+		//ft_free(1,data.pipe);
 		perror(data.in);
 		exit(1);
 	}
@@ -56,8 +60,6 @@ void	outfile(t_data data, t_cmd *n, int index)
 
 void	creer_cmd(t_data data, t_cmd *n, int index)
 {
-	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t");
-	n->path = correct_path(ft_split(path_in_env(data.env), ":"), n->cmd[0]);
 	// printf("h%sh\n", n->path);
 	// if (n->path == NULL)
 	// 	exit(1);
@@ -71,6 +73,8 @@ void	creer_cmd(t_data data, t_cmd *n, int index)
 		n->in = data.pipe[index - 1][0];
 		n->out = data.pipe[index][1];
 	}
+	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t");
+	n->path = correct_path(ft_split(path_in_env(data.env), ":"), n->cmd[0]);
 }
 
 void	uni_multi_pipe(t_data *data, t_cmd *cmd)

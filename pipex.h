@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/21 02:05:56 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/22 20:21:27 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ void		creer_cmd_here(t_data data, t_cmd *n, int index);
 void		pipe_here_doc(t_data data, t_cmd *cmd);
 void		here_doc(t_data data, t_cmd cmd, char *limiter);
 void		in_here_doc(t_data data, t_cmd *n);
+void	*ft_fr(int i, char **t);
+void	*ft_free(int i, int **t);
 
 #endif
