@@ -80,7 +80,7 @@ char	*reste(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (str[i] == '\0')
+	if (str[i] == '\n' || str[i] == '\0')
 	{
 		free(str);
 		return (NULL);

@@ -81,37 +81,35 @@ int	close_wait(t_data data)
 	int	i;
 	int	status;
 
-	i = 0;
-	while (i < data.num_cmd - 1)
-	{
-		close(data.pipe[i][0]);
-		close(data.pipe[i][1]);
-		i++;
-	}
-	i = 0;
-	while (i < data.num_cmd)
-	{
-		waitpid(data.pids[i], &status, WCONTINUED);
-		i++;
-	}
-	// printf("status %d \n", status);
+	// i = 0;
+	// while (i < data.num_cmd - 1)
+	// {
+	// 	close(data.pipe[i][0]);
+	// 	close(data.pipe[i][1]);
+	// 	i++;
+	// }
+	// i = 0;
+	// while (i < data.num_cmd)
+	// {
+	// 	waitpid(data.pids[i], &status, WCONTINUED);
+	// 	i++;
+	// }
+	khwi(data);
 	return (WEXITSTATUS(status));
 }
 
 int	main(int c, char **v, char **env)
 {
-	int		i;
 	t_data	data;
 	t_cmd	cmd;
 
-	i = 0;
 	if (c == 6 && (ft_strcmp(v[1], "here_doc") == 0))
 	{
 		v++;
 		inisialiser(&data, v, env, c - 1);
-		creer_cmd_here(data, &cmd, i);
+		//creer_cmd_here(data, &cmd, i);
 		here_doc(data, cmd, v[1]);
-		return (close_wait(data));
+		exit (close_wait(data));
 	}
 	else if (c >= 5)
 	{

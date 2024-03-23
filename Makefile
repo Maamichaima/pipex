@@ -4,7 +4,7 @@ SRC = main_pipex.c utils.c utils_2.c split_path.c path.c command.c inisialiser.c
 SRCB = main_bonus.c get_next_line.c get_next_line_utils.c inisialiser.c \
 		utils.c utils_2.c split_path.c path.c command.c heredoc_bonus.c
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+#CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 OBJS = ${SRC:.c=.o}
 OBJSB = ${SRCB:.c=.o}
