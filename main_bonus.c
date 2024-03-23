@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/21 18:10:47 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 01:42:09 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@
 // 		i++;
 // 	}
 // }
+
+void khwi(t_data data)
+{
+	free(data.pids);
+	ft_free(data.num_cmd - 1, data.pipe);
+}
 
 int	close_wait(t_data data)
 {

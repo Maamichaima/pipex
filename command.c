@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/22 20:24:36 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 00:39:31 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	executer(t_cmd cmd, t_data data)
 	execve(cmd.path, cmd.cmd, cmd.env);
 	//ft_free(i,data.pipe);
 	//free(cmd.path);
-	//ft_fr(i, cmd.cmd);
+	ft_fr(i, cmd.cmd);
+	khwi(data);
 	write(2, "eroooor cmd", 15);
 	exit(127);
 }
@@ -63,7 +64,6 @@ void	creer_cmd(t_data data, t_cmd *n, int index)
 	// printf("h%sh\n", n->path);
 	// if (n->path == NULL)
 	// 	exit(1);
-	n->env = data.env;
 	if (index == 0)
 		infile(data, n);
 	else if (index == (data.num_cmd - 1))
@@ -73,8 +73,9 @@ void	creer_cmd(t_data data, t_cmd *n, int index)
 		n->in = data.pipe[index - 1][0];
 		n->out = data.pipe[index][1];
 	}
+	n->env = ft_split(path_in_env(data.env), ":");
 	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t");
-	n->path = correct_path(ft_split(path_in_env(data.env), ":"), n->cmd[0]);
+	n->path = correct_path(n->env, n->cmd[0]);
 }
 
 void	uni_multi_pipe(t_data *data, t_cmd *cmd)

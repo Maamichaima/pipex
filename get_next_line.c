@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:25:58 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/16 13:59:17 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 00:31:45 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*stt(int fd, char *str)
 			return (NULL);
 		}
 		buf[i] = '\0';
-		str = ft_strjoin(str, buf);
+		str = ft_strjoin_(str, buf);
 		if (!str)
 			return (NULL);
 	}

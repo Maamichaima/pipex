@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:26:00 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/16 14:05:05 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 00:31:25 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,29 @@
 // 	return (d + s);
 // }
 
-// char	*ft_strjoin(char *s1, char *s2)
-// {
-// 	int		ls1;
-// 	int		ls2;
-// 	char	*p;
+char	*ft_strjoin_(char *s1, char *s2)
+{
+	int		ls1;
+	int		ls2;
+	char	*p;
 
-// 	if (!s1 && !s2)
-// 		return (NULL);
-// 	if (!s1)
-// 	{
-// 		return (ft_strdup(s2));
-// 	}
-// 	ls1 = ft_strlen(s1);
-// 	ls2 = ft_strlen(s2);
-// 	p = malloc(sizeof(char) * (ls1 + ls2 + 1));
-// 	if (!p)
-// 		return (NULL);
-// 	p[0] = '\0';
-// 	ft_strlcat(p, s1, ls1 + 1);
-// 	ft_strlcat(p, s2, ls1 + ls2 + 1);
-// 	free(s1);
-// 	return (p);
-// }
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+	{
+		return (ft_strdup(s2));
+	}
+	ls1 = ft_strlen(s1);
+	ls2 = ft_strlen(s2);
+	p = malloc(sizeof(char) * (ls1 + ls2 + 1));
+	if (!p)
+		return (NULL);
+	p[0] = '\0';
+	ft_strlcat(p, s1, ls1 + 1);
+	ft_strlcat(p, s2, ls1 + ls2 + 1);
+	free(s1);
+	return (p);
+}
 
 // char	*ft_strdup(const char *s1)
 // {

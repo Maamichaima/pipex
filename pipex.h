@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/22 20:21:27 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 00:31:32 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char		*ft_strcpy(char *s1, char *s2);
 void		executer(t_cmd cmd, t_data data);
 void		inisialiser(t_data *data, char **v, char **env, int c);
 size_t		ft_strlcat(char *dst, char *src, size_t dstsize);
-char		*ft_strjoin(char *s1, char *s2);
+char		*ft_strjoin_(char *s1, char *s2);
 char		*ft_strdup(const char *s1);
 char		*ft_strchr(char *s, int c);
 char		*get_next_line(int fd);
@@ -74,5 +74,6 @@ void		here_doc(t_data data, t_cmd cmd, char *limiter);
 void		in_here_doc(t_data data, t_cmd *n);
 void	*ft_fr(int i, char **t);
 void	*ft_free(int i, int **t);
+void khwi(t_data data);
 
 #endif

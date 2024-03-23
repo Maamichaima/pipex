@@ -1,6 +1,6 @@
 Makefile
+cat
 command.c
-command.o
 executer.c
 get_next_line.c
 get_next_line_utils.c
@@ -8,18 +8,13 @@ heredoc
 heredoc_bonus.c
 in
 inisialiser.c
-inisialiser.o
 main_bonus.c
 main_pipex.c
-main_pipex.o
 out
 path.c
-path.o
 pipex
 pipex.h
+pipex_bonus
 split_path.c
-split_path.o
 utils.c
-utils.o
 utils_2.c
-utils_2.o

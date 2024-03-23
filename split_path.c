@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:20:33 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/22 20:20:45 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 01:32:58 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,14 @@ static char	*alloc_word(char *s, char *c)
 
 void	*ft_fr(int i, char **t)
 {
-	while (i > 0)
+	(void) i;
+	int j;
+
+	j = 0;
+	while (t[j])
 	{
-		free(t[i - 1]);
-		i--;
+		free(t[j]);
+		j++;
 	}
 	free(t);
 	return (NULL);

@@ -1,4 +1,4 @@
-SRC = main_pipex.c utils.c utils_2.c split_path.c path.c command.c inisialiser.c 
+SRC = main_pipex.c utils.c utils_2.c split_path.c path.c command.c inisialiser.c get_next_line_utils.c
 
 		
 SRCB = main_bonus.c get_next_line.c get_next_line_utils.c inisialiser.c \

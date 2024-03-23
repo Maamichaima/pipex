@@ -6,30 +6,40 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:04:56 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/20 04:05:26 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/23 00:55:22 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <string.h>
 
 // FIN LPATH LI SHIH
 char	*correct_path(char **path, char *str)
 {
 	int		i;
 	char	*tmp;
+	char *cmd;
 
 	tmp = str;
 	i = 0;
 	if (!str)
 		return (str);
 	str = ft_strjoin("/", str);
+	//printf("%s\n", str);
 	while (path && path[i])
 	{
-		path[i] = ft_strjoin(path[i], str);
-		if (access(path[i], F_OK) == 0)
-			return (path[i]);
+		cmd = ft_strjoin(path[i], str);
+		if (access(cmd, F_OK) == 0)
+		{
+			free(str);
+			//ft_fr(8,path);
+			return (cmd);
+		}
+		free(cmd);
 		i++;
 	}
+	free(str);
+	//ft_fr(8,path);
 	return (tmp);
 }
 
