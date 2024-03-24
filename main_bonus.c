@@ -81,19 +81,19 @@ int	close_wait(t_data data)
 	int	i;
 	int	status;
 
-	// i = 0;
-	// while (i < data.num_cmd - 1)
-	// {
-	// 	close(data.pipe[i][0]);
-	// 	close(data.pipe[i][1]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < data.num_cmd)
-	// {
-	// 	waitpid(data.pids[i], &status, WCONTINUED);
-	// 	i++;
-	// }
+	i = 0;
+	while (i < data.num_cmd - 1)
+	{
+		close(data.pipe[i][0]);
+		close(data.pipe[i][1]);
+		i++;
+	}
+	i = 0;
+	while (i < data.num_cmd)
+	{
+		waitpid(data.pids[i], &status, WCONTINUED);
+		i++;
+	}
 	khwi(data);
 	return (WEXITSTATUS(status));
 }

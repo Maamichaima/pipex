@@ -28,9 +28,8 @@ void	executer(t_cmd cmd, t_data data)
 		i++;
 	}
 	execve(cmd.path, cmd.cmd, cmd.env);
-	//ft_free(i,data.pipe);
-	//free(cmd.path);
 	ft_fr(i, cmd.cmd);
+	ft_fr(i, cmd.env);
 	khwi(data);
 	write(2, "eroooor cmd", 15);
 	exit(127);
@@ -41,7 +40,7 @@ void	infile(t_data data, t_cmd *n)
 	n->in = open(data.in, O_RDONLY);
 	if (n->in == -1)
 	{
-		//ft_free(1,data.pipe);
+		khwi(data);
 		perror(data.in);
 		exit(1);
 	}
