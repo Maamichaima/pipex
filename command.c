@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 00:39:31 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 01:14:31 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	executer(t_cmd cmd, t_data data)
 		i++;
 	}
 	execve(cmd.path, cmd.cmd, cmd.env);
-	ft_fr(i, cmd.cmd);
-	ft_fr(i, cmd.env);
-	khwi(data);
 	write(2, "eroooor cmd", 15);
+	ft_fr_char(cmd.cmd);
+	ft_fr_char(cmd.env);
+	khwi(data);
 	exit(127);
 }
 
@@ -60,9 +60,6 @@ void	outfile(t_data data, t_cmd *n, int index)
 
 void	creer_cmd(t_data data, t_cmd *n, int index)
 {
-	// printf("h%sh\n", n->path);
-	// if (n->path == NULL)
-	// 	exit(1);
 	if (index == 0)
 		infile(data, n);
 	else if (index == (data.num_cmd - 1))

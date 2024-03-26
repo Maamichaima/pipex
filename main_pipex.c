@@ -6,17 +6,11 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/22 20:48:34 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 01:44:16 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void khwi(t_data data)
-{
-	free(data.pids);
-	ft_free(data.num_cmd - 1, data.pipe);
-}
 
 int	close_wait(t_data data)
 {
@@ -33,11 +27,11 @@ int	close_wait(t_data data)
 	i = 0;
 	while (i < data.num_cmd)
 	{
-		waitpid(data.pids[i], &status, WCONTINUED);
+		waitpid(data.pids[i], &status, 0);
 		i++;
 	}
 	khwi(data);
-	return (WEXITSTATUS(status));
+	return (status >> 8);
 }
 
 int	main(int c, char **v, char **env)

@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:20:33 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 01:32:58 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/24 14:35:27 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,8 @@ static char	*alloc_word(char *s, char *c)
 	return (p);
 }
 
-void	*ft_fr(int i, char **t)
-{
-	(void) i;
-	int j;
-
-	j = 0;
-	while (t[j])
-	{
-		free(t[j]);
-		j++;
-	}
-	free(t);
-	return (NULL);
-}
-
+// if (split[i] == NULL)
+// 	return (ft_fr(i, split));
 char	**ft_split(char *str, char *charset)
 {
 	char	**split;
@@ -113,8 +100,6 @@ char	**ft_split(char *str, char *charset)
 		if (str[i] != '\0')
 		{
 			split[w] = alloc_word(str + i, charset);
-			// if (split[i] == NULL)
-			// 	return (ft_fr(i, split));
 			w++;
 		}
 		while (str[i] != '\0' && !check_sep(str[i], charset))

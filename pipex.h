@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 00:31:32 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 00:50:12 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
@@ -69,12 +69,11 @@ void		here_doc(t_data data, t_cmd cmd, char *limiter);
 int			close_wait(t_data data);
 void		outfile(t_data data, t_cmd *n, int index);
 void		infile(t_data data, t_cmd *n);
-void		creer_cmd_here(t_data data, t_cmd *n, int index);
-void		pipe_here_doc(t_data data, t_cmd *cmd);
-void		here_doc(t_data data, t_cmd cmd, char *limiter);
-void		in_here_doc(t_data data, t_cmd *n);
-void	*ft_fr(int i, char **t);
-void	*ft_free(int i, int **t);
-void khwi(t_data data);
+void		creer_cmd_here(t_data data, t_cmd *n, int index, int *pipe_her);
+void		pipe_here_doc(t_data data, t_cmd *cmd, int *pipe_her);
+void		in_here_doc(t_data data, t_cmd *n, int *pipe_her);
+void		*ft_fr_char(char **t);
+void		*ft_fr_int(int i, int **t);
+void		khwi(t_data data);
 
 #endif

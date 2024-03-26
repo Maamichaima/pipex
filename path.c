@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:04:56 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 00:55:22 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/25 22:39:51 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,27 @@ char	*correct_path(char **path, char *str)
 {
 	int		i;
 	char	*tmp;
-	char *cmd;
+	char	*cmd;
 
 	tmp = str;
 	i = 0;
 	if (!str)
 		return (str);
+	if (str[0] == '/')
+		return (tmp); // cher (/)
 	str = ft_strjoin("/", str);
-	//printf("%s\n", str);
 	while (path && path[i])
 	{
 		cmd = ft_strjoin(path[i], str);
 		if (access(cmd, F_OK) == 0)
 		{
 			free(str);
-			//ft_fr(8,path);
 			return (cmd);
 		}
 		free(cmd);
 		i++;
 	}
 	free(str);
-	//ft_fr(8,path);
 	return (tmp);
 }
 
@@ -67,7 +66,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-// ligne of path
 char	*path_in_env(char **env)
 {
 	int	i;

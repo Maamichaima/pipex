@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 00:30:30 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/24 14:26:46 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,6 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-void	*ft_free(int i, char **t)
-{
-	while (i > 0)
-	{
-		free(t[i - 1]);
-		i--;
-	}
-	free(t);
-	return (NULL);
-}
-
-// free(s1);
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		ls1;
@@ -118,6 +106,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	p[0] = '\0';
 	ft_strlcat(p, s1, ls1 + 1);
 	ft_strlcat(p, s2, ls1 + ls2 + 1);
-	//free(s1);
 	return (p);
 }
