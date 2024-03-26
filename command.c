@@ -52,6 +52,7 @@ void	outfile(t_data data, t_cmd *n, int index)
 	n->out = open(data.out, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (n->out == -1)
 	{
+		khwi(data);
 		perror(data.out);
 		exit(1);
 	}
