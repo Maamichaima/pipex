@@ -20,7 +20,7 @@ ${NAME} : ${OBJS}
 	${CC} -o ${NAME} ${OBJS}
 
 ${NAME_B} : ${OBJSB}
-	${CC} -o ${NAME} ${OBJSB}
+	${CC} -o ${NAME_B} ${OBJSB}
 clean :
 	${RM} ${OBJS} ${OBJSB}
 fclean : clean

@@ -6,16 +6,18 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:21:30 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 02:53:13 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 23:32:35 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	*ft_fr_char(char **t)
+void	ft_fr_char(char **t)
 {
 	int	j;
 
+	if (!t || !(*t))
+		return ;
 	j = 0;
 	while (t[j])
 	{
@@ -23,18 +25,18 @@ void	*ft_fr_char(char **t)
 		j++;
 	}
 	free(t);
-	return (NULL);
 }
 
-void	*ft_fr_int(int i, int **t)
+void	ft_fr_int(int i, int **t)
 {
+	if (!t || !(*t))
+		return ;
 	while (i > 0)
 	{
 		free(t[i - 1]);
 		i--;
 	}
 	free(t);
-	return (NULL);
 }
 
 void	clear(t_data data)
