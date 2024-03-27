@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 00:09:41 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/21 01:58:07 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 01:24:09 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	inisialiser(t_data *data, char **v, char **env, int c)
 		data->pipe[i] = malloc(sizeof(int) * 2);
 		if (pipe(data->pipe[i]) == -1)
 		{
-			perror("pip");
+			perror("pipe");
 			exit(1);
 		}
 		i++;

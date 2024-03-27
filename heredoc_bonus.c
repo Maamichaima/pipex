@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:52:26 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/26 01:41:26 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 01:28:15 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,26 @@ void	in_here_doc(t_data data, t_cmd *n, int *pipe_her)
 	n->out = data.pipe[0][1];
 }
 
+void	out_here_doc(t_data data, t_cmd *n, int index)
+{
+	n->out = open(data.out, O_CREAT | O_APPEND | O_WRONLY, 0644);
+	if (n->out == -1)
+	{
+		khwi(data);
+		perror(data.out);
+		exit(1);
+	}
+	n->in = data.pipe[index - 1][0];
+}
+
 void	creer_cmd_here(t_data data, t_cmd *n, int index, int *pipe_her)
 {
 	if (index == 0)
 		in_here_doc(data, n, pipe_her);
 	else if (index == (data.num_cmd - 1))
-		outfile(data, n, index);
-	else
-	{
-		n->in = data.pipe[index - 1][0];
-		n->out = data.pipe[index][1];
-	}
+		out_here_doc(data, n, index);
 	n->env = ft_split(path_in_env(data.env), ":");
-	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t");
+	n->cmd = ft_split(data.v[index + 2], "\n\r\f \t\v");
 	n->path = correct_path(n->env, n->cmd[0]);
 }
 
@@ -58,37 +65,12 @@ void	pipe_here_doc(t_data data, t_cmd *cmd, int *pipe_her)
 	}
 }
 
-void	ppp(int *pipe_her, t_data data, t_cmd *cmd)
-{
-	int	pid;
-	int	status;
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork");
-		exit(1);
-	}
-	else if (pid == 0)
-	{
-		dup2(pipe_her[0], 0);
-		close(pipe_her[0]);
-		pipe_here_doc(data, cmd, pipe_her);
-		// exit(0);
-	}
-	else
-	{
-		close(pipe_her[0]);
-		waitpid(pid, &status, 0);
-		// return (WEXITSTATUS(status));
-	}
-}
-
-void	here_doc(t_data data, t_cmd cmd, char *limiter)
+void	here_doc(t_data data, char *limiter)
 {
 	char	*tmp;
 	char	*lim;
 	int		pipe_her[2];
+	t_cmd	cmd;
 
 	pipe(pipe_her);
 	lim = ft_strjoin(limiter, "\n");
@@ -106,6 +88,5 @@ void	here_doc(t_data data, t_cmd cmd, char *limiter)
 	}
 	free(lim);
 	close(pipe_her[1]);
-	ppp(pipe_her, data, &cmd);
-	// return (close_wait(data));
+	pipe_here_doc(data, &cmd, pipe_her);
 }

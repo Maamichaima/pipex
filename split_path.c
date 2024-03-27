@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:20:33 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/24 14:35:27 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 18:23:19 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ static char	*alloc_word(char *s, char *c)
 	return (p);
 }
 
-// if (split[i] == NULL)
-// 	return (ft_fr(i, split));
 char	**ft_split(char *str, char *charset)
 {
 	char	**split;
@@ -88,7 +86,7 @@ char	**ft_split(char *str, char *charset)
 
 	w = 0;
 	i = 0;
-	if (!str)
+	if (!str || !charset)
 		return (NULL);
 	split = (char **)malloc(sizeof(char **) * (count_word(str, charset) + 1));
 	if (!split)

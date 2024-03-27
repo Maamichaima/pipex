@@ -6,34 +6,11 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:26:00 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/23 00:31:25 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 02:12:56 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-// size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
-// {
-// 	size_t	i;
-// 	size_t	j;
-// 	size_t	d;
-// 	size_t	s;
-
-// 	i = 0;
-// 	s = ft_strlen(src);
-// 	if (dstsize == 0 || dstsize <= ft_strlen(dst))
-// 		return (s + dstsize);
-// 	d = ft_strlen(dst);
-// 	j = d;
-// 	while (src[i] != '\0' && i < dstsize - d - 1)
-// 	{
-// 		dst[j] = src[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	dst[j] = '\0';
-// 	return (d + s);
-// }
 
 char	*ft_strjoin_(char *s1, char *s2)
 {
@@ -58,47 +35,3 @@ char	*ft_strjoin_(char *s1, char *s2)
 	free(s1);
 	return (p);
 }
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*str;
-// 	int		len;
-// 	int		i;
-
-// 	i = 0;
-// 	len = ft_strlen(s1);
-// 	str = malloc(sizeof(char) * (len + 1));
-// 	if (!str)
-// 		return (NULL);
-// 	while (s1[i] != '\0')
-// 	{
-// 		str[i] = s1[i];
-// 		i++;
-// 	}
-// 	str[i] = '\0';
-// 	return (str);
-// }
-
-// char	*ft_strchr(char *s, int c)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	while (s[i] != (char)c && s[i] != '\0')
-// 		i++;
-// 	if (s[i] == (char)c)
-// 		return (&s[i]);
-// 	return (0);
-// }
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i] != '\0')
-// 		i++;
-// 	return (i);
-// }

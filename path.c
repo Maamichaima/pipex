@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:04:56 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/25 22:39:51 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/26 16:20:21 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*correct_path(char **path, char *str)
 	i = 0;
 	if (!str)
 		return (str);
-	if (str[0] == '/')
-		return (tmp); // cher (/)
+	if (ft_strchr(str, '/'))
+		return (tmp);
 	str = ft_strjoin("/", str);
 	while (path && path[i])
 	{
@@ -74,7 +74,7 @@ char	*path_in_env(char **env)
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			return (env[i]);
+			return (env[i] + 5);
 		i++;
 	}
 	return (NULL);

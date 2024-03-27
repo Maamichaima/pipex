@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/26 00:50:12 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 01:28:39 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 void		uni_multi_pipe(t_data *data, t_cmd *cmd);
 void		creer_cmd(t_data data, t_cmd *n, int index);
 void		executer(t_cmd cmd, t_data data);
-void		here_doc(t_data data, t_cmd cmd, char *limiter);
+void		here_doc(t_data data, char *limiter);
 int			close_wait(t_data data);
 void		outfile(t_data data, t_cmd *n, int index);
 void		infile(t_data data, t_cmd *n);
