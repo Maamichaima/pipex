@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:52:26 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 01:28:15 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 02:54:21 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	in_here_doc(t_data data, t_cmd *n, int *pipe_her)
 	n->in = pipe_her[0];
 	if (n->in == -1)
 	{
-		khwi(data);
+		clear(data);
 		perror(data.in);
 		exit(1);
 	}
@@ -29,7 +29,7 @@ void	out_here_doc(t_data data, t_cmd *n, int index)
 	n->out = open(data.out, O_CREAT | O_APPEND | O_WRONLY, 0644);
 	if (n->out == -1)
 	{
-		khwi(data);
+		clear(data);
 		perror(data.out);
 		exit(1);
 	}

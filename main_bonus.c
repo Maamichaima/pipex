@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 02:44:15 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 02:54:00 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	close_wait(t_data data)
 		waitpid(data.pids[i], &status, 0);
 		i++;
 	}
-	khwi(data);
+	clear(data);
 	return (status >> 8);
 }
 

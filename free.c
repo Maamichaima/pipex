@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:21:30 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/26 02:15:32 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 02:53:13 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*ft_fr_int(int i, int **t)
 	return (NULL);
 }
 
-void	khwi(t_data data)
+void	clear(t_data data)
 {
 	free(data.pids);
 	ft_fr_int(data.num_cmd - 1, data.pipe);

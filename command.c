@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 02:24:42 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/27 02:54:41 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	executer(t_cmd cmd, t_data data)
 	write(2, ": command not found\n", 21);
 	ft_fr_char(cmd.cmd);
 	ft_fr_char(cmd.env);
-	khwi(data);
+	clear(data);
 	exit(127);
 }
 
@@ -41,7 +41,7 @@ void	redirections_of_1cmd(t_data data, t_cmd *n)
 	n->in = open(data.in, O_RDONLY);
 	if (n->in == -1)
 	{
-		khwi(data);
+		clear(data);
 		perror(data.in);
 		exit(1);
 	}
@@ -53,7 +53,7 @@ void	redirections_of_2cmd(t_data data, t_cmd *n, int index)
 	n->out = open(data.out, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (n->out == -1)
 	{
-		khwi(data);
+		clear(data);
 		perror(data.out);
 		exit(1);
 	}
