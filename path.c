@@ -6,14 +6,12 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:04:56 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/26 16:20:21 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/28 01:56:18 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <string.h>
 
-// FIN LPATH LI SHIH
 char	*correct_path(char **path, char *str)
 {
 	int		i;

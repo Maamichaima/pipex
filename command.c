@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 23:29:35 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/28 01:54:27 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void	executer(t_cmd cmd, t_data data)
 	write(2, cmd.cmd[0], ft_strlen(cmd.cmd[0]));
 	write(2, ": command not found\n", 21);
 	ft_fr_char(cmd.cmd);
-	if (cmd.env)
-		ft_fr_char(cmd.env);
+	ft_fr_char(cmd.env);
 	clear(data);
 	exit(127);
 }
 
-void	redirections_of_1cmd(t_data data, t_cmd *n)
+void	redirections_of_first(t_data data, t_cmd *n)
 {
 	n->in = open(data.in, O_RDONLY);
 	if (n->in == -1)
@@ -49,7 +48,7 @@ void	redirections_of_1cmd(t_data data, t_cmd *n)
 	n->out = data.pipe[0][1];
 }
 
-void	redirections_of_2cmd(t_data data, t_cmd *n, int index)
+void	redirections_of_last(t_data data, t_cmd *n, int index)
 {
 	n->out = open(data.out, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (n->out == -1)
@@ -64,9 +63,9 @@ void	redirections_of_2cmd(t_data data, t_cmd *n, int index)
 void	creer_cmd(t_data data, t_cmd *n, int index)
 {
 	if (index == 0)
-		redirections_of_1cmd(data, n);
+		redirections_of_first(data, n);
 	else if (index == (data.num_cmd - 1))
-		redirections_of_2cmd(data, n, index);
+		redirections_of_last(data, n, index);
 	else
 	{
 		n->in = data.pipe[index - 1][0];

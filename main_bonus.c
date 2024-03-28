@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:21:51 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/27 02:54:00 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/28 01:52:18 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ int	main(int c, char **v, char **env)
 		uni_multi_pipe(&data, &cmd);
 		return (close_wait(data));
 	}
+	write(2, "invalid argument\n", 18);
+	return (0);
 }
