@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:15:38 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/28 01:50:27 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/28 18:40:26 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		infile(t_data data, t_cmd *n);
 void		creer_cmd_here(t_data data, t_cmd *n, int index, int *pipe_her);
 void		pipe_here_doc(t_data data, t_cmd *cmd, int *pipe_her);
 void		in_here_doc(t_data data, t_cmd *n, int *pipe_her);
+void		message_error(t_cmd cmd, t_data data);
 void		ft_fr_char(char **t);
 void		ft_fr_int(int i, int **t);
 void		clear(t_data data);

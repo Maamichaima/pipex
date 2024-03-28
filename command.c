@@ -6,7 +6,7 @@
 /*   By: cmaami <cmaami@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 00:15:03 by cmaami            #+#    #+#             */
-/*   Updated: 2024/03/28 01:54:27 by cmaami           ###   ########.fr       */
+/*   Updated: 2024/03/28 18:42:22 by cmaami           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,7 @@ void	executer(t_cmd cmd, t_data data)
 		i++;
 	}
 	execve(cmd.path, cmd.cmd, data.env);
-	write(2, cmd.cmd[0], ft_strlen(cmd.cmd[0]));
-	write(2, ": command not found\n", 21);
-	ft_fr_char(cmd.cmd);
-	ft_fr_char(cmd.env);
-	clear(data);
-	exit(127);
+	message_error(cmd, data);
 }
 
 void	redirections_of_first(t_data data, t_cmd *n)
